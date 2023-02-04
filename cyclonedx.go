@@ -477,6 +477,7 @@ const (
 	SpecVersion1_2                        // 1.2
 	SpecVersion1_3                        // 1.3
 	SpecVersion1_4                        // 1.4
+	SpecVersion1_5                        // 1.5
 )
 
 type SWID struct {
@@ -511,6 +512,7 @@ type Vulnerability struct {
 	Created        string                    `json:"created,omitempty" xml:"created,omitempty"`
 	Published      string                    `json:"published,omitempty" xml:"published,omitempty"`
 	Updated        string                    `json:"updated,omitempty" xml:"updated,omitempty"`
+	Rejected       string                    `json:"rejected,omitempty" xml:"rejected,omitempty"`
 	Credits        *Credits                  `json:"credits,omitempty" xml:"credits,omitempty"`
 	Tools          *[]Tool                   `json:"tools,omitempty" xml:"tools>tool,omitempty"`
 	Analysis       *VulnerabilityAnalysis    `json:"analysis,omitempty" xml:"analysis,omitempty"`
