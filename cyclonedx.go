@@ -313,10 +313,11 @@ const (
 )
 
 type License struct {
-	ID   string        `json:"id,omitempty" xml:"id,omitempty"`
-	Name string        `json:"name,omitempty" xml:"name,omitempty"`
-	Text *AttachedText `json:"text,omitempty" xml:"text,omitempty"`
-	URL  string        `json:"url,omitempty" xml:"url,omitempty"`
+	ID         string        `json:"id,omitempty" xml:"id,omitempty"`
+	Name       string        `json:"name,omitempty" xml:"name,omitempty"`
+	Text       *AttachedText `json:"text,omitempty" xml:"text,omitempty"`
+	URL        string        `json:"url,omitempty" xml:"url,omitempty"`
+	Properties *[]Property   `json:"properties,omitempty" xml:"properties>property,omitempty"`
 }
 
 type Licenses []LicenseChoice
