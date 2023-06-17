@@ -207,6 +207,16 @@ func convertLicenses(licenses *Licenses, specVersion SpecVersion) {
 			*licenses = converted
 		}
 	}
+
+	if specVersion < SpecVersion1_5 {
+		for i := range *licenses {
+			choice := &(*licenses)[i]
+			if choice.License != nil {
+				choice.License.BOMRef = ""
+				choice.License.Licensing = nil
+			}
+		}
+	}
 }
 
 func convertVulnerabilities(vulns *[]Vulnerability, specVersion SpecVersion) {
