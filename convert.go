@@ -295,6 +295,8 @@ func (sv SpecVersion) supportsComponentType(cType ComponentType) bool {
 		return sv >= SpecVersion1_1
 	case ComponentTypeContainer, ComponentTypeFirmware:
 		return sv >= SpecVersion1_2
+	case ComponentTypeDeviceDriver:
+		return sv >= SpecVersion1_5
 	}
 
 	return false
