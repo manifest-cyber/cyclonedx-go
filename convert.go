@@ -87,6 +87,10 @@ func (b *BOM) convert(specVersion SpecVersion) {
 		convertVulnerabilities(b.Vulnerabilities, specVersion)
 	}
 
+	if b.Compositions != nil {
+		convertCompositions(b.Compositions, specVersion)
+	}
+
 	if b.ExternalReferences != nil {
 		convertExternalReferences(b.ExternalReferences, specVersion)
 	}
@@ -138,6 +142,19 @@ func componentConverter(specVersion SpecVersion) func(*Component) {
 		convertLicenses(c.Licenses, specVersion)
 		if !specVersion.supportsScope(c.Scope) {
 			c.Scope = ""
+		}
+	}
+}
+
+func convertCompositions(comps *[]Composition, specVersion SpecVersion) {
+	if comps == nil {
+		return
+	}
+
+	for i := range *comps {
+		comp := &(*comps)[i]
+		if !specVersion.supportsCompositionAggregate(comp.Aggregate) {
+			comp.Aggregate = CompositionAggregateUnknown
 		}
 	}
 }
@@ -336,6 +353,16 @@ func (sv SpecVersion) supportsComponentType(cType ComponentType) bool {
 	}
 
 	return false
+}
+
+func (sv SpecVersion) supportsCompositionAggregate(ca CompositionAggregate) bool {
+	switch ca {
+	case CompositionAggregateIncompleteFirstPartyOpenSourceOnly, CompositionAggregateIncompleteFirstPartyProprietaryOnly,
+		CompositionAggregateIncompleteThirdPartyOpenSourceOnly, CompositionAggregateIncompleteThirdPartyProprietaryOnly:
+		return sv >= SpecVersion1_5
+	}
+
+	return sv >= SpecVersion1_3
 }
 
 func (sv SpecVersion) supportsExternalReferenceType(ert ExternalReferenceType) bool {
