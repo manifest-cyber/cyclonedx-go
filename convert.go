@@ -323,10 +323,10 @@ func (sv SpecVersion) supportsComponentType(cType ComponentType) bool {
 
 func (sv SpecVersion) supportsExternalReferenceType(ert ExternalReferenceType) bool {
 	switch ert {
-	case ERTypeAttestation, ERTypeCertificationReport, ERTypeCodifiedInfrastructure, ERTypeComponentAnalysisReport,
-		ERTypeDistributionIntake, ERTypeDynamicAnalysisReport, ERTypeExploitabilityStatement, ERTypeMaturityReport,
-		ERTypePentestReport, ERTypeQualityMetrics, ERTypeRuntimeAnalysisReport, ERTypeStaticAnalysisReport,
-		ERTypeThreatModel, ERTypeVulnerabilityAssertion:
+	case ERTypeAdversaryModel, ERTypeAttestation, ERTypeCertificationReport, ERTypeCodifiedInfrastructure,
+		ERTypeComponentAnalysisReport, ERTypeDistributionIntake, ERTypeDynamicAnalysisReport, ERTypeExploitabilityStatement,
+		ERTypeMaturityReport, ERTypePentestReport, ERTypeQualityMetrics, ERTypeRiskAssessment, ERTypeRuntimeAnalysisReport,
+		ERTypeStaticAnalysisReport, ERTypeThreatModel, ERTypeVulnerabilityAssertion:
 		return sv >= SpecVersion1_5
 	}
 

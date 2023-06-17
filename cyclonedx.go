@@ -214,6 +214,7 @@ type ExternalReference struct {
 type ExternalReferenceType string
 
 const (
+	ERTypeAdversaryModel          ExternalReferenceType = "adversary-model"
 	ERTypeAdvisories              ExternalReferenceType = "advisories"
 	ERTypeAttestation             ExternalReferenceType = "attestation"
 	ERTypeBOM                     ExternalReferenceType = "bom"
@@ -236,6 +237,7 @@ const (
 	ERTypePentestReport           ExternalReferenceType = "pentest-report"
 	ERTypeQualityMetrics          ExternalReferenceType = "quality-metrics"
 	ERTypeReleaseNotes            ExternalReferenceType = "release-notes"
+	ERTypeRiskAssessment          ExternalReferenceType = "risk-assessment"
 	ERTypeRuntimeAnalysisReport   ExternalReferenceType = "runtime-analysis-report"
 	ERTypeSecurityContact         ExternalReferenceType = "security-contact"
 	ERTypeSocial                  ExternalReferenceType = "social"
