@@ -84,6 +84,10 @@ func (b *BOM) convert(specVersion SpecVersion) {
 		}
 	}
 
+	if b.ExternalReferences != nil {
+		convertExternalReferences(b.ExternalReferences, specVersion)
+	}
+
 	b.SpecVersion = specVersion
 	b.XMLNS = xmlNamespaces[specVersion]
 	b.JSONSchema = jsonSchemas[specVersion]
@@ -141,9 +145,15 @@ func convertExternalReferences(extRefs *[]ExternalReference, specVersion SpecVer
 		return
 	}
 
-	if specVersion < SpecVersion1_3 {
-		for i := range *extRefs {
-			(*extRefs)[i].Hashes = nil
+	for i := range *extRefs {
+		extRef := &(*extRefs)[i]
+
+		if !specVersion.supportsExternalReferenceType(extRef.Type) {
+			extRef.Type = ERTypeOther
+		}
+
+		if specVersion < SpecVersion1_3 {
+			extRef.Hashes = nil
 		}
 	}
 }
@@ -288,6 +298,18 @@ func (sv SpecVersion) supportsComponentType(cType ComponentType) bool {
 	}
 
 	return false
+}
+
+func (sv SpecVersion) supportsExternalReferenceType(ert ExternalReferenceType) bool {
+	switch ert {
+	case ERTypeAttestation, ERTypeCertificationReport, ERTypeCodifiedInfrastructure, ERTypeComponentAnalysisReport,
+		ERTypeDistributionIntake, ERTypeDynamicAnalysisReport, ERTypeExploitabilityStatement, ERTypeMaturityReport,
+		ERTypePentestReport, ERTypeQualityMetrics, ERTypeRuntimeAnalysisReport, ERTypeStaticAnalysisReport,
+		ERTypeThreatModel, ERTypeVulnerabilityAssertion:
+		return sv >= SpecVersion1_5
+	}
+
+	return sv >= SpecVersion1_1
 }
 
 func (sv SpecVersion) supportsHashAlgorithm(algo HashAlgorithm) bool {
