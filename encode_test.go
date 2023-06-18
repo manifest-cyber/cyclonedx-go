@@ -186,7 +186,7 @@ func TestJsonBOMEncoder_EncodeVersion(t *testing.T) {
 		require.ErrorContains(t, err, "not supported")
 	})
 
-	for _, version := range []SpecVersion{SpecVersion1_2, SpecVersion1_3, SpecVersion1_4} {
+	for _, version := range []SpecVersion{SpecVersion1_2, SpecVersion1_3, SpecVersion1_4, SpecVersion1_5} {
 		t.Run(version.String(), func(t *testing.T) {
 			// Read original BOM JSON
 			inputFile, err := os.Open("./testdata/valid-bom.json")
@@ -216,7 +216,7 @@ func TestJsonBOMEncoder_EncodeVersion(t *testing.T) {
 }
 
 func TestXmlBOMEncoder_EncodeVersion(t *testing.T) {
-	for _, version := range []SpecVersion{SpecVersion1_0, SpecVersion1_1, SpecVersion1_2, SpecVersion1_3, SpecVersion1_4} {
+	for _, version := range []SpecVersion{SpecVersion1_0, SpecVersion1_1, SpecVersion1_2, SpecVersion1_3, SpecVersion1_4, SpecVersion1_5} {
 		t.Run(version.String(), func(t *testing.T) {
 			// Read original BOM JSON
 			inputFile, err := os.Open("./testdata/valid-bom.xml")
