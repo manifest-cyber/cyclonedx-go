@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/bradleyjkemp/cupaloy/v2 v2.8.0
 	github.com/stretchr/testify v1.8.4
-	github.com/terminalstatic/go-xsd-validate v0.1.5
+	github.com/terminalstatic/go-xsd-validate v0.1.8
 	github.com/xeipuuv/gojsonschema v1.2.0
 )
 
